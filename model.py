@@ -12,6 +12,9 @@ import numpy as np
 import tensorflow as tf
 from loss import build_discriminator_loss, build_generator_loss
 import cfg
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior() 
+
 
 class SRNet():
 
