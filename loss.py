@@ -12,8 +12,8 @@ import cfg
 def build_discriminator_loss(x, name = 'd_loss'):
 
     x_true, x_pred = tf.split(x, 2, name = name + '_split')
-    d_loss = -tf.reduce_mean(tf.log(tf.clip_by_value(x_true, cfg.epsilon, 1.0)) \
-                + tf.log(tf.clip_by_value(1.0 - x_pred, cfg.epsilon, 1.0)))
+    d_loss = -tf.reduce_mean(tf.math.log(tf.clip_by_value(x_true, cfg.epsilon, 1.0)) \
+                + tf.math.log(tf.clip_by_value(1.0 - x_pred, cfg.epsilon, 1.0)))
     return d_loss
 
 def build_dice_loss(x_t, x_o, name = 'dice_loss'):
@@ -74,7 +74,7 @@ def build_vgg_loss(x, name = 'vgg_loss'):
 def build_gan_loss(x, name = 'gan_loss'):
     
     x_true, x_pred = tf.split(x, 2, name = name + '_split')
-    gan_loss = -tf.reduce_mean(tf.log(tf.clip_by_value(x_pred, cfg.epsilon, 1.0)))
+    gan_loss = -tf.reduce_mean(tf.math.log(tf.clip_by_value(x_pred, cfg.epsilon, 1.0)))
     return gan_loss
 
 def build_generator_loss(out_g, out_d, out_vgg, labels, name = 'g_loss'):
