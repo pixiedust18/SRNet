@@ -6,7 +6,6 @@ Licensed under the GPL License (see LICENSE for details)
 Written by Yu Qian
 """
 
-import tensorflow as tf
 from model import SRNet
 import numpy as np
 import os
@@ -14,6 +13,8 @@ import cfg
 from utils import *
 from datagen import srnet_datagen, get_input_data
 import argparse
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def main():
     
