@@ -57,8 +57,13 @@ def main():
             if args.input_dir is None:
                 i_s = cv2.imread(args.i_s)
                 i_t = cv2.imread(args.i_t)
-                i_s = cv2.resize(i_s, (256, 256))
-                i_t = cv2.resize(i_t, (256, 256))
+                
+                s1, s2, _ = i_s.shape
+                t1, t2, _ = i_t.shape
+                h = max(s1, t1)
+                w = max(s2, t2)
+                i_s = cv2.resize(i_s, (w, h))
+                i_t = cv2.resize(i_t, (w, h))
 
                 o_sk, o_t, o_b, o_f = model.predict(sess, i_t, i_s)
                 
