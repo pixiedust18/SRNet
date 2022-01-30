@@ -57,6 +57,9 @@ def main():
             if args.input_dir is None:
                 i_s = cv2.imread(args.i_s)
                 i_t = cv2.imread(args.i_t)
+                i_s = cv2.resize(i_s, (256, 256))
+                i_t = cv2.resize(i_t, (256, 256))
+
                 o_sk, o_t, o_b, o_f = model.predict(sess, i_t, i_s)
                 
                 cv2.imwrite(os.path.join(args.save_dir, 'result.png'), o_f)
